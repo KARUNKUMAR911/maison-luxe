@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-dark text-cream font-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-dark; }
+  ::-webkit-scrollbar-thumb { @apply bg-gold rounded-full; }
+
+  ::selection { @apply bg-gold/30; }
+
+  input, textarea, select {
+    @apply outline-none;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply px-8 py-3 bg-gold text-dark-100 font-sans text-xs font-semibold tracking-widest
+           transition-all duration-300 hover:bg-gold-light active:scale-95;
+  }
+
+  .btn-outline {
+    @apply px-8 py-3 border border-gold text-gold font-sans text-xs font-semibold tracking-widest
+           transition-all duration-300 hover:bg-gold hover:text-dark-100 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply px-8 py-3 border border-cream/20 text-cream font-sans text-xs tracking-widest
+           transition-all duration-300 hover:border-cream/50 active:scale-95;
+  }
+
+  .input-field {
+    @apply w-full bg-dark-200 border border-white/10 text-cream font-sans text-sm px-4 py-3
+           placeholder:text-cream-faint focus:border-gold/50 transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-dark-100 border border-gold/10 transition-all duration-300
+           hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/50;
+  }
+
+  .section-label {
+    @apply font-sans text-[10px] tracking-[5px] text-gold uppercase;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl font-light text-cream tracking-wide;
+  }
+
+  .gold-divider {
+    @apply w-14 h-px bg-gold mx-auto my-6;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-6 md:px-10;
+  }
+
+  .nav-link {
+    @apply font-sans text-[11px] tracking-[2px] text-cream-muted hover:text-gold
+           transition-colors duration-200 cursor-pointer;
+  }
+
+  .badge {
+    @apply font-sans text-[9px] tracking-[2px] font-semibold px-3 py-1;
+  }
+}
