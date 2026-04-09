@@ -1,6 +1,9 @@
+const fs = require("fs");
 const winston = require("winston");
 
 const { combine, timestamp, colorize, printf, json } = winston.format;
+
+fs.mkdirSync("logs", { recursive: true });
 
 const devFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} [${level}]: ${message}`;
