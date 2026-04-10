@@ -39,8 +39,20 @@ export default function AdminProducts() {
 
   const handleSave = async () => {
     setSaving(true);
-    const payload = { ...form, price: Number(form.price), comparePrice: form.comparePrice ? Number(form.comparePrice) : null,
-      stock: Number(form.stock), tags: form.tags ? form.tags.split(",").map((t) => t.trim()) : [] };
+    const payload = {
+      name: form.name,
+      slug: form.slug,
+      description: form.description,
+      price: Number(form.price),
+      comparePrice: form.comparePrice ? Number(form.comparePrice) : null,
+      stock: Number(form.stock),
+      sku: form.sku,
+      categoryId: form.categoryId,
+      images: form.images || [],
+      tags: form.tags ? form.tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
+      isFeatured: form.isFeatured || false,
+      isActive: form.isActive !== false,
+    };
     try {
       if (editing) await productService.update(editing.id, payload);
       else await productService.create(payload);

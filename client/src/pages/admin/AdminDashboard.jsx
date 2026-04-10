@@ -23,6 +23,16 @@ export default function AdminDashboard() {
 
   if (loading) return <Loader center />;
 
+  if (!stats) return (
+    <div className="flex flex-col items-center justify-center h-96 gap-4">
+      <p className="font-serif text-xl text-cream-muted">Could not load dashboard</p>
+      <p className="font-sans text-xs text-cream-faint">Backend may be starting up — refresh in 30 seconds</p>
+      <button onClick={() => window.location.reload()} className="btn-gold">
+        REFRESH
+      </button>
+    </div>
+  );
+
   const growthColor = stats.revenue.growth >= 0 ? "text-green-400" : "text-red-400";
 
   return (

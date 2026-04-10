@@ -113,8 +113,21 @@ const updateProduct = async (id, data) => {
   const exists = await prisma.product.findUnique({ where: { id } });
   if (!exists) throw ApiError.notFound("Product not found");
 
+  // Remove slug and sku if they haven't changed to avoid unique constraint errors
+  const updateData = { ...data };
+  if (updateData.slug === exists.slug) delete updateData.slug;
+  if (updateData.sku === exists.sku) delete updateData.sku;
+
+  // Remove undefined/empty fields
+  Object.keys(updateData).forEach((key) => {
+    if (updateData[key] === undefined || updateData[key] === "") {
+      delete updateData[key];
+    }
+  });
+
   return prisma.product.update({
-    where: { id }, data,
+    where: { id },
+    data: updateData,
     include: { category: { select: { id: true, name: true, slug: true } } },
   });
 };
