@@ -36,7 +36,8 @@ import AdminProducts   from "@/pages/admin/AdminProducts";
 import AdminOrders     from "@/pages/admin/AdminOrders";
 import AdminUsers      from "@/pages/admin/AdminUsers";
 import AdminCategories from "@/pages/admin/AdminCategories";
-import AdminAnalytics  from "@/pages/admin/AdminAnalytics";
+import AdminAnalytics    from "@/pages/admin/AdminAnalytics";
+import AdminOrderDetail  from "@/pages/admin/AdminOrderDetail";
 
 import CartDrawer from "@/components/cart/CartDrawer";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
@@ -90,7 +91,8 @@ export default function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index           element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
-            <Route path="orders"   element={<AdminOrders />} />
+            <Route path="orders"      element={<AdminOrders />} />
+            <Route path="orders/:id"  element={<AdminOrderDetail />} />
             <Route path="users"    element={<AdminUsers />} />
             <Route path="categories" element={<AdminCategories />} />
             <Route path="analytics"  element={<AdminAnalytics />} />
